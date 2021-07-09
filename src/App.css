@@ -1,38 +1,27 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav.navbar {
+  padding: 0.5rem 3rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+a.nav_links {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.5rem 0.5rem;
+  margin: 0 0.2rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input#name,
+input#mail {
+  margin: 0.5rem;
+  padding: 0.2rem 1rem;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid gray;
 }
