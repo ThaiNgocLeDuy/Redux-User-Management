@@ -49,12 +49,8 @@ a.nav_links {
   width: 100%;
 }
 
-.ic1 {
+.ic1, .ic2 {
   margin-top: 40px;
-}
-
-.ic2 {
-  margin-top: 30px;
 }
 
 .input {
