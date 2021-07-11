@@ -4,16 +4,16 @@ import { Button, ButtonGroup, Container, Row, Table } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../actions/UserActions";
 import { Link } from "react-router-dom";
+import { FaPen } from "react-icons/fa";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 const TableList = (props) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-  console.log(users);
 
   const handleDeleteUser = (id) => {
     const action = deleteUser(id);
     dispatch(action);
-    console.log(action);
   };
 
   return (
@@ -42,13 +42,13 @@ const TableList = (props) => {
                       <Link
                         to={`/edit/${user.id}`}
                       >
-                        <Button color="warning">EDIT</Button>
+                        <Button color="warning">EDIT <FaPen /></Button>
                       </Link>
                       <Button
                         onClick={() => handleDeleteUser(user.id)}
                         color="danger"
                       >
-                        DELETE
+                        DELETE <RiDeleteBin2Fill />
                       </Button>
                     </ButtonGroup>
                   </td>

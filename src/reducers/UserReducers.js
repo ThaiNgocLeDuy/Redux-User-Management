@@ -1,12 +1,7 @@
 import actionTypes from "../constants/ConstantsType";
+import data from '../data';
 
-const initialState = [
-  {
-    id: 1,
-    name: "Le Duy",
-    mail: "thaingocleduy@gmail.com",
-  },
-];
+const initialState = data;
 
 const userReducers = (state = initialState, action) => {
   switch (action.type) {

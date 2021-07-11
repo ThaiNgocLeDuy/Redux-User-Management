@@ -2,15 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Label,
-  Row,
-} from "reactstrap";
+import { Col, Container, Row, Form, Button, Label } from "reactstrap";
 import { addUser } from "../actions/UserActions";
 
 const AddUser = (props) => {
@@ -25,9 +17,8 @@ const AddUser = (props) => {
     const user = {
       name: name,
       mail: mail,
-    }
+    };
     const action = addUser(user);
-    console.log(action);
     dispatch(action);
     history.push("/");
     nameRef.current.value = "";
@@ -38,30 +29,37 @@ const AddUser = (props) => {
     <Container>
       <Row>
         <Col className="m-auto" xs="6">
-          <Form>
-            <FormGroup>
-              <Label for="exampleName">Name:</Label>
+          <Form className="form">
+            <div className="title">Welcome</div>
+            <div className="input-container ic1">
               <input
-                autoComplete="off"
-                placeholder="Name"
+                id="firstname"
+                className="input"
                 type="text"
-                name="name"
-                id="name"
+                placeholder=" "
+                autoComplete="off"
                 ref={nameRef}
               />
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleEmail">Email:</Label>
+              <div className="cut" />
+              <Label htmlFor="name" className="placeholder">
+                Name
+              </Label>
+            </div>
+            <div className="input-container ic2">
               <input
+                id="email"
+                className="input"
+                type="text"
+                placeholder=" "
                 autoComplete="off"
-                placeholder="Email"
-                type="email"
-                name="mail"
-                id="mail"
                 ref={mailRef}
               />
-            </FormGroup>
-            <Button onClick={handleAddUser} className="mt-2" color="primary">
+              <div className="cut cut-short" />
+              <Label htmlFor="email" className="placeholder">
+                Email
+              </Label>
+            </div>
+            <Button onClick={handleAddUser} className="submit" color="primary">
               ADD
             </Button>
           </Form>

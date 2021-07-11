@@ -2,15 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Label,
-  Row
-} from "reactstrap";
+import { Button, Col, Container, Form, Label, Row } from "reactstrap";
 import { updateUser } from "../actions/UserActions";
 
 const EditUser = (props) => {
@@ -40,32 +32,43 @@ const EditUser = (props) => {
     <Container>
       <Row>
         <Col className="m-auto" xs="6">
-          <Form>
-            <FormGroup>
-              <Label for="exampleName">Name:</Label>
+          <Form className="form">
+            <div className="title">Welcome</div>
+            <div className="input-container ic1">
               <input
-                autoComplete="off"
-                placeholder="Name"
+                id="firstname"
+                className="input"
                 type="text"
-                name="name"
-                id="name"
+                placeholder=" "
+                autoComplete="off"
                 ref={nameRef}
                 defaultValue={user.name}
               />
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleEmail">Email:</Label>
+              <div className="cut" />
+              <Label htmlFor="name" className="placeholder">
+                Name
+              </Label>
+            </div>
+            <div className="input-container ic2">
               <input
+                id="email"
+                className="input"
+                type="text"
+                placeholder=" "
                 autoComplete="off"
-                placeholder="Email"
-                type="email"
-                name="mail"
-                id="mail"
                 ref={mailRef}
                 defaultValue={user.mail}
               />
-            </FormGroup>
-            <Button onClick={handleUpdateUser} className="mt-2" color="primary">
+              <div className="cut cut-short" />
+              <Label htmlFor="email" className="placeholder">
+                Email
+              </Label>
+            </div>
+            <Button
+              onClick={handleUpdateUser}
+              className="submit"
+              color="primary"
+            >
               SAVE
             </Button>
           </Form>
