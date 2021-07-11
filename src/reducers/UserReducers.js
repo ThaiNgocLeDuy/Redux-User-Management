@@ -1,7 +1,7 @@
 import actionTypes from "../constants/ConstantsType";
-import data from '../data';
+import data from "../data";
 
-const initialState = data;
+const initialState = { data: data, sort: "" };
 
 const userReducers = (state = initialState, action) => {
   switch (action.type) {
@@ -31,6 +31,19 @@ const userReducers = (state = initialState, action) => {
             }
           : user
       );
+    case actionTypes.FILTER_BY_NAME:
+      const sortBy = action.payload;
+      const sortedList = state.data.slice();
+      if (sortBy === "A-Z") {
+        sortedList.sort((a, b) => (a.name > b.name ? 1 : -1));
+      } else if (sortBy === "Z-A") {
+        sortedList.sort((a, b) => (a.name > b.name ? -1 : 1));
+      }
+      return {
+        ...state,
+        sort: sortBy,
+        data: sortedList,
+      };
     default:
       return state;
   }

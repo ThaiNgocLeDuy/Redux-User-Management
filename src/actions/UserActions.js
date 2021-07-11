@@ -20,3 +20,10 @@ export const updateUser = (payload) => {
     payload,
   }
 }
+
+export const filterUser = (payload) => {
+  return {
+    type: actionTypes.FILTER_BY_NAME,
+    payload
+  }
+}

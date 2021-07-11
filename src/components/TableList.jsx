@@ -4,12 +4,13 @@ import { FaPen } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, ButtonGroup, Container, Row, Table } from "reactstrap";
-import { deleteUser } from "../actions/UserActions";
+import { Button, ButtonGroup, Col, Container, Row, Table } from "reactstrap";
+import { deleteUser, filterUser } from "../actions/UserActions";
 
 const TableList = (props) => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users.data);
+  const sort = useSelector((state) => state.users.sort);
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -18,19 +19,39 @@ const TableList = (props) => {
     dispatch(action);
   };
 
+  const handleSelectChange = (e) => {
+    const action = filterUser(e.target.value);
+    console.log(action);
+    dispatch(action);
+  };
+
   return (
     <Container>
       <Row className="m-4">
-        <input
-          className="w-25"
-          type="text"
-          placeholder="Search..."
-          name="search"
-          id="search"
-          autoComplete="off"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <Col xs="6">
+          <input
+            className="w-50 px-2"
+            type="text"
+            placeholder="Search..."
+            name="search"
+            id="search"
+            autoComplete="off"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </Col>
+        <Col xs="6">
+          <select
+            value={sort}
+            onChange={handleSelectChange}
+            className="w-25"
+            name="select-filter"
+            id="select-filter"
+          >
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+          </select>
+        </Col>
       </Row>
       <Row>
         <Table hover bordered striped responsive>
@@ -48,7 +69,9 @@ const TableList = (props) => {
                 .filter((val) =>
                   searchTerm === ""
                     ? val
-                    : val.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    : val.name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
                       val.mail.toLowerCase().includes(searchTerm.toLowerCase())
                     ? val
                     : null
